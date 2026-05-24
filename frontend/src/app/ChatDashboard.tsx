@@ -75,7 +75,8 @@ interface DashboardMetrics {
 }
 
 export default function ChatDashboard({ backendUrl }: { backendUrl: string }) {
-  const BACKEND_URL = backendUrl || 'http://localhost:5001';
+  // Strip any trailing slashes from the backend URL to prevent double-slash path issues
+  const BACKEND_URL = (backendUrl || 'http://localhost:5001').replace(/\/+$/, '');
 
   // Sidebar & Chat State
   const [conversations, setConversations] = useState<Conversation[]>([]);
