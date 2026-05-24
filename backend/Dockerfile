@@ -18,6 +18,9 @@ COPY tsconfig.json ./
 COPY prisma ./prisma/
 COPY src ./src/
 
+# Set placeholder env variable to satisfy Prisma build-time validation
+ENV DATABASE_URL="postgresql://postgres:postgrespassword@localhost:5432/chat_bot?schema=public"
+
 # Generate Prisma Client and compile TypeScript
 RUN npx prisma generate
 RUN npm run build
